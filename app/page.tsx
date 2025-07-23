@@ -134,19 +134,34 @@ export default function Home() {
             className=" text-white md:py-16 md:px-6 text-center rounded-3xl mx-auto"
           >
             <div className="space-y-4 flex flex-col items-center justify-between h-full">
-              <div className="text-white text-sm bg-white/30 backdrop-blur-lg rounded-full border-b border-b-0.1 border-white px-4 py-1 w-fit">
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-white text-sm bg-white/30 backdrop-blur-lg rounded-full border-b border-b-0.1 border-white px-4 py-1 w-fit"
+              >
                 1,335 People are on waitlist
-              </div>
+              </motion.div>
 
-              <h1 className="text-5xl md:text-7xl font-semibold text-white">
+              <motion.h1
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.7 }}
+                className="text-5xl md:text-7xl font-semibold text-white"
+              >
                 Clarity in <span className="italic font-serif">Complexity</span>
-              </h1>
+              </motion.h1>
 
-              <p className="text-white/70 md:max-w-xl mx-auto text-sm sm:text-base">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="text-white/70 md:max-w-xl mx-auto text-sm sm:text-base"
+              >
                 We help you decode the noise. One insight at a time. <br />
                 Transform chaos into clarity with intelligent solutions built
                 for scale.
-              </p>
+              </motion.p>
 
               {/* <div className="min-h-[30vh]"> */}
               {/* <p className="text-white/70  mb-6">
@@ -165,12 +180,14 @@ export default function Home() {
                   required
                   className="px-4 py-3 rounded-full bg-white/20 backdrop-blur-lg text--slate-900 border w-full placeholder-white outline-none md:min-w-[400px] "
                 />
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
                   type="submit"
                   className="px-6 py-2 bg-white/70 text-black rounded-full font-medium hover:bg-gray-300 transition cursor-pointer w-full"
                 >
                   Join Waitlist
-                </button>
+                </motion.button>
               </form>
 
               <div className="flex justify-center text-center text-white text-xl font-semibold mb-2">
