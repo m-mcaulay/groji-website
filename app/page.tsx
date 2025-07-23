@@ -1,24 +1,59 @@
 "use client";
-import WaitlistSection from "@/components/waitlist-section";
+
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
+
+// ✅ Airtable Setup Guide
+// Go to airtable.com and create a base with:
+
+// Table name: Waitlist
+
+// Field: Email (type: email)
+
+// Get your API key and Base ID:
+
+// Base ID: Found in the API docs (https://airtable.com/{baseId}/api/docs)
+
+// API Key: From your Airtable account settings
+
+// Replace:
+
+// ts
+// Copy
+// Edit
+// axios.post('https://api.airtable.com/v0/appID/TableName', ...
+// with:
+
+// ts
+// Copy
+// Edit
+// axios.post('https://api.airtable.com/v0/YOUR_BASE_ID/Waitlist', ...
+// And set the correct Authorization header.
+
+// 🧪 Notes
+// You can move the Airtable POST logic into an API route (e.g., /api/waitlist) if you want to hide your API key from frontend.
+
+// Use Environment Variables for your Airtable key.
 
 const targetDate = new Date("2025-01-01T00:00:00");
 
+function getTimeLeft() {
+  const now = new Date();
+  const total = targetDate.getTime() - now.getTime();
+
+  return {
+    days: Math.max(Math.floor(total / (1000 * 60 * 60 * 24)), 0),
+    hours: Math.max(Math.floor((total / (1000 * 60 * 60)) % 24), 0),
+    minutes: Math.max(Math.floor((total / 1000 / 60) % 60), 0),
+    seconds: Math.max(Math.floor((total / 1000) % 60), 0),
+  };
+}
+
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
-
-  function getTimeLeft() {
-    const now = new Date();
-    const total = targetDate.getTime() - now.getTime();
-
-    return {
-      days: Math.floor(total / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((total / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((total / 1000 / 60) % 60),
-      seconds: Math.floor((total / 1000) % 60),
-    };
-  }
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -27,6 +62,38 @@ export default function Home() {
 
     return () => clearInterval(timer);
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email || !email.includes("@")) {
+      toast.error("Please enter a valid email.");
+      return;
+    }
+
+    toast.promise(
+      axios.post(
+        "https://api.airtable.com/v0/appID/TableName",
+        {
+          fields: { Email: email },
+        },
+        {
+          headers: {
+            Authorization: `Bearer YOUR_AIRTABLE_API_KEY`,
+            "Content-Type": "application/json",
+          },
+        }
+      ),
+      {
+        loading: "Joining waitlist...",
+        success: "You’ve been added to the waitlist!",
+        error: "There was a problem. Please try again.",
+      }
+    );
+
+    setEmail("");
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -88,19 +155,28 @@ export default function Home() {
                   Be amongst the first to experience Wait and launch a viral
                   waitlist. Sign up to be notified when we launch!
                 </p> */}
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-3  mb-6 max-w-xl mx-auto mt-12">
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col sm:flex-row justify-center items-center gap-3  mb-6 max-w-xl mx-auto mt-12"
+              >
                 <input
                   type="email"
                   placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                   className="px-4 py-3 rounded-full bg-white/20 backdrop-blur-lg text--slate-900 border placeholder-white outline-none min-w-[400px]"
                 />
-                <button className="px-6 py-2 bg-white/70 text-black rounded-full font-medium hover:bg-gray-300 transition cursor-pointer">
+                <button
+                  type="submit"
+                  className="px-6 py-2 bg-white/70 text-black rounded-full font-medium hover:bg-gray-300 transition cursor-pointer"
+                >
                   Join Waitlist
                 </button>
-              </div>
+              </form>
 
               <div className="flex justify-center text-center text-white text-xl font-semibold mb-2">
-                {["days", "hours", "minutes", "seconds"].map((unit, idx) => (
+                {["days", "hours", "minutes", "seconds"].map((unit) => (
                   <div key={unit} className="mx-3">
                     <div>{timeLeft[unit as keyof typeof timeLeft]}</div>
                     <div className="text-sm text-neutral-400 uppercase">
