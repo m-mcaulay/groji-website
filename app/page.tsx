@@ -35,34 +35,52 @@ import axios from "axios";
 // 🧪 Notes
 // You can move the Airtable POST logic into an API route (e.g., /api/waitlist) if you want to hide your API key from frontend.
 
-// Use Environment Variables for your Airtable key.
+// Use Environment Variables for your Airtable key
 
-const targetDate = new Date("2025-01-01T00:00:00");
-
-function getTimeLeft() {
-  const now = new Date();
-  const total = targetDate.getTime() - now.getTime();
-
-  return {
-    days: Math.max(Math.floor(total / (1000 * 60 * 60 * 24)), 0),
-    hours: Math.max(Math.floor((total / (1000 * 60 * 60)) % 24), 0),
-    minutes: Math.max(Math.floor((total / 1000 / 60) % 60), 0),
-    seconds: Math.max(Math.floor((total / 1000) % 60), 0),
-  };
-}
+type TimeLeft = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};
 
 export default function Home() {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft());
   const [email, setEmail] = useState("");
+  const [targetDate, setTargetDate] = useState<Date | null>(null);
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(getTimeLeft());
-    }, 1000);
-
-    return () => clearInterval(timer);
+    // Set target date only on the client
+    const date = new Date();
+    date.setMonth(date.getMonth() + 6);
+    setTargetDate(date);
   }, []);
 
+  useEffect(() => {
+    if (!targetDate) return;
+
+    const updateTimeLeft = () => {
+      const now = new Date();
+      const diff = Math.max(targetDate.getTime() - now.getTime(), 0);
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      setTimeLeft({ days, hours, minutes, seconds });
+    };
+
+    updateTimeLeft(); // initial
+    const interval = setInterval(updateTimeLeft, 1000);
+
+    return () => clearInterval(interval);
+  }, [targetDate]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
