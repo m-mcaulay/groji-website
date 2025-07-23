@@ -105,8 +105,6 @@ export default function Home() {
       overflow-hidden"
       >
         <div className="text-center flex flex-col justify-center min-h-screen">
-          {/* Navigation */}
-
           <nav className="flex justify-center p-6 text-slate-900 font-bold">
             <div className="absolute top-6 left-6">
               <div className="w-6 h-6 border border-white rounded-full flex items-center justify-center text-black">
@@ -133,18 +131,18 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className=" text-white py-16 px-6 text-center rounded-3xl  mx-auto"
+            className=" text-white md:py-16 md:px-6 text-center rounded-3xl mx-auto"
           >
-            <div className="space-y-4  flex flex-col items-center justify-between h-full">
+            <div className="space-y-4 flex flex-col items-center justify-between h-full">
               <div className="text-white text-sm bg-white/30 backdrop-blur-lg rounded-full border-b border-b-0.1 border-white px-4 py-1 w-fit">
                 1,335 People are on waitlist
               </div>
 
-              <h1 className="text-7xl sm:text-7xl font-semibold text-white">
+              <h1 className="text-5xl md:text-7xl font-semibold text-white">
                 Clarity in <span className="italic font-serif">Complexity</span>
               </h1>
 
-              <p className="text-white/70 max-w-xl mx-auto text-sm sm:text-base">
+              <p className="text-white/70 md:max-w-xl mx-auto text-sm sm:text-base">
                 We help you decode the noise. One insight at a time. <br />
                 Transform chaos into clarity with intelligent solutions built
                 for scale.
@@ -157,7 +155,7 @@ export default function Home() {
                 </p> */}
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row justify-center items-center gap-3  mb-6 max-w-xl mx-auto mt-12"
+                className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-6 w-full md:max-w-xl mx-auto mt-12"
               >
                 <input
                   type="email"
@@ -165,11 +163,11 @@ export default function Home() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="px-4 py-3 rounded-full bg-white/20 backdrop-blur-lg text--slate-900 border placeholder-white outline-none min-w-[400px]"
+                  className="px-4 py-3 rounded-full bg-white/20 backdrop-blur-lg text--slate-900 border w-full placeholder-white outline-none md:min-w-[400px] "
                 />
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-white/70 text-black rounded-full font-medium hover:bg-gray-300 transition cursor-pointer"
+                  className="px-6 py-2 bg-white/70 text-black rounded-full font-medium hover:bg-gray-300 transition cursor-pointer w-full"
                 >
                   Join Waitlist
                 </button>
