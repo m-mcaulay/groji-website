@@ -47,7 +47,6 @@ type TimeLeft = {
 
 export default function Home() {
   const [email, setEmail] = useState("");
-  const [targetDate, setTargetDate] = useState<Date | null>(null);
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -55,11 +54,25 @@ export default function Home() {
     seconds: 0,
   });
 
+  const [targetDate, setTargetDate] = useState<Date | null>(null);
+
   useEffect(() => {
-    // Set target date only on the client
-    const date = new Date();
-    date.setMonth(date.getMonth() + 6);
-    setTargetDate(date);
+    if (typeof window === "undefined") return; // guard for SSR
+
+    const storedDate = localStorage.getItem("launchTargetDate");
+
+    if (storedDate) {
+      setTargetDate(new Date(storedDate));
+    } else {
+      const date = new Date();
+      date.setMonth(date.getMonth() + 6);
+
+      // Ensure 6 months exactly even across month boundary (fix edge cases)
+      const finalDate = new Date(date.toISOString());
+
+      localStorage.setItem("launchTargetDate", finalDate.toISOString());
+      setTargetDate(finalDate);
+    }
   }, []);
 
   useEffect(() => {
@@ -77,7 +90,7 @@ export default function Home() {
       setTimeLeft({ days, hours, minutes, seconds });
     };
 
-    updateTimeLeft(); // initial
+    updateTimeLeft(); // initial call
     const interval = setInterval(updateTimeLeft, 1000);
 
     return () => clearInterval(interval);
