@@ -82,6 +82,7 @@ export default function Home() {
 
     return () => clearInterval(interval);
   }, [targetDate]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -234,18 +235,18 @@ export default function Home() {
                 </motion.button>
               </form>
 
-              <div className="flex justify-center text-center text-white text-xl font-semibold mb-2">
+              <div className="flex justify-center text-center text-white text-lg md:text-xl font-semibold mb-2">
                 {["days", "hours", "minutes", "seconds"].map((unit) => (
                   <div key={unit} className="mx-3">
                     <div>{timeLeft[unit as keyof typeof timeLeft]}</div>
-                    <div className="text-sm text-neutral-400 uppercase">
+                    <div className="text-xs md:text-sm text-neutral-400 uppercase">
                       {unit}
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="text-sm text-neutral-100 mt-2">
+              <div className="text-xs md:text-sm text-neutral-100 mt-2">
                 📅 LEFT UNTIL FULL LAUNCH
               </div>
             </div>
