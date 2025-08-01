@@ -97,8 +97,6 @@ export default function Home() {
     return () => window.removeEventListener("resize", setViewportHeight);
   }, []);
 
-  // SEO - create a good implementation for that - its a repetitive task
-  // create checklist of what we do have, and checklist of what we can do next when your ready
   return (
     <>
       <Head>
