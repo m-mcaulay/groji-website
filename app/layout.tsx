@@ -9,8 +9,8 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "",
-  description: "",
+  title: "Groji. Explore and grow. Educational growing kits.",
+  description: "Educational growing kits inspired by nature.",
 };
 
 export default function RootLayout({
