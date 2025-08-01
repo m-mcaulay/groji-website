@@ -122,6 +122,7 @@ export default function Home() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
+      className="overflow-hidden"
     >
       <main
         className="min-h-screen bg-[#0703fc] px-4

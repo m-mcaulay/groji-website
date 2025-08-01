@@ -56,7 +56,7 @@ const EmojiPainter: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="fixed inset-0  overflow-hidden z-0" />
+    <div ref={containerRef} className="fixed inset-0 overflow-hidden z-0" />
   );
 };
 
