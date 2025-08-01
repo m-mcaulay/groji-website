@@ -128,7 +128,7 @@ export default function Home() {
       overflow-hidden"
       >
         <EmojiPainter />
-        <div className="text-center flex flex-col justify-center min-h-screen z-1">
+        <div className="text-center flex flex-col justify-center min-h-screen z-1 max-h-screen overflow-y-hidden">
           <nav className="flex justify-center p-6 text-slate-900 font-bold">
             <div className="absolute top-4 left-4">
               <div className="flex items-center justify-center text-white text-3xl">
@@ -145,14 +145,14 @@ export default function Home() {
                 {item}
               </a>
             ))} */}
-            <div className="absolute top-4 right-4">
-              <motion.button
+            <div className="absolute top-6 right-4">
+              <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
                 className="text-white cursor-pointer font-medium border rounded-full px-8 py-3 hover:bg-gray-300 hover:text-black transition"
               >
                 Get in touch
-              </motion.button>
+              </motion.a>
             </div>
           </nav>
 
