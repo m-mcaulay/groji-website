@@ -3,6 +3,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --vh: 1vh;
+}
+
+/* Utility class if needed */
+.full-screen-height {
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 @theme inline {

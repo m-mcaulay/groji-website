@@ -125,11 +125,11 @@ export default function Home() {
       className="overflow-hidden"
     >
       <main
-        className="min-h-screen bg-[#0703fc] px-4
+        className="full-screen-height bg-[#0703fc] px-4
       overflow-hidden"
       >
         <EmojiPainter />
-        <div className="text-center flex flex-col justify-center min-h-screen z-1 max-h-screen overflow-y-hidden">
+        <div className="text-center flex flex-col justify-center full-screen-height z-1 max-h-screen overflow-y-hidden">
           <nav className="flex justify-center p-6 text-slate-900 font-bold">
             <div className="absolute top-4 left-4">
               <div className="flex items-center justify-center text-white text-2xl md:text-3xl">
