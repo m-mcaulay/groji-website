@@ -34,6 +34,11 @@ body {
 input:-webkit-autofill {
   background-color: transparent !important;
   transition: background-color 5000s ease-in-out 0s;
-  -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.2) inset !important;
-  -webkit-text-fill-color: #0f172a !important; /* slate-900 */
+
+  /* Faux background */
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.2) inset,
+    0 0 0 1px white !important; /* ✅ this re-applies the border */
+
+  -webkit-text-fill-color: #ffffff !important;
+  border-radius: 9999px; /* reapply if you're using rounded-full */
 }
