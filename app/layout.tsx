@@ -11,6 +11,28 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: "Groji. Explore and grow. Educational growing kits.",
   description: "Educational growing kits inspired by nature.",
+  openGraph: {
+    title: "Groji. Explore and grow. Educational growing kits.",
+    description:
+      "Join the Groji waitlist – educational growing kits inspired by nature.",
+    url: "https://groji-nature-kits.vercel.app/", // update when you have a domain
+    siteName: "Groji",
+    //   images: [
+    //     {
+    //       url: "/og-image.png", // place this image in public folder
+    //       width: 1200,
+    //       height: 630,
+    //       alt: "Groji – Educational Growing Kits",
+    //     },
+    //   ],
+    //   type: "website",
+    // },
+    // twitter: {
+    //   card: "summary_large_image",
+    //   title: "Groji",
+    //   description: "Join the waitlist for Groji – educational growing kits.",
+    //   images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({

@@ -1,5 +1,6 @@
 "use client";
 
+import Head from "next/head";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -99,44 +100,61 @@ export default function Home() {
   // SEO - create a good implementation for that - its a repetitive task
   // create checklist of what we do have, and checklist of what we can do next when your ready
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="overflow-hidden"
-    >
-      <main className="full-screen-height bg-[#0703fc] px-4 overflow-hidden">
-        <EmojiPainter />
-        <div className="text-center flex flex-col justify-center full-screen-height z-1 max-h-screen overflow-y-hidden">
-          <nav className="absolute top-5 md:top-6 left-4 right-4 flex justify-between items-center font-bold">
-            <div className="flex items-center justify-center text-white text-xl md:text-3xl">
-              Groji
-            </div>
-            <div className="">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                className="text-white cursor-pointer font-medium border border-white bg-[#0703fc] rounded-full text-sm md:text-lg px-6 py-2 md:px-8 md:py-3 hover:bg-gray-300 hover:text-black transition"
-              >
-                <a
-                  href="mailto:stephen@studiomod.uk"
-                  aria-label="Send an email to stephen@studiomod.uk"
-                >
-                  Get in touch<span className="sr-only"> via email</span>
-                </a>
-              </motion.div>
-            </div>
-          </nav>
+    <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Groji",
+              url: "https://groji-nature-kits.vercel.app/",
+              description:
+                "Join the waitlist for Groji, educational growing kits inspired by nature.",
+            }),
+          }}
+        />
+      </Head>
 
-          {/* Hero Content */}
-          <motion.section
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-white mt-12  md:py-32 md:px-6 text-center rounded-3xl mx-auto z-1"
-          >
-            <div className="space-y-4 flex flex-col items-center justify-between h-full">
-              {/* <motion.div
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="overflow-hidden"
+      >
+        <main className="full-screen-height bg-[#0703fc] px-4 overflow-hidden">
+          <EmojiPainter />
+          <div className="text-center flex flex-col justify-center full-screen-height z-1 max-h-screen overflow-y-hidden">
+            <nav className="absolute top-5 md:top-6 left-4 right-4 flex justify-between items-center font-bold">
+              <div className="flex items-center justify-center text-white text-xl md:text-3xl">
+                Groji
+              </div>
+              <div className="">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="text-white cursor-pointer font-medium border border-white bg-[#0703fc] rounded-full text-sm md:text-lg px-6 py-2 md:px-8 md:py-3 hover:bg-gray-300 hover:text-black transition"
+                >
+                  <a
+                    href="mailto:stephen@studiomod.uk"
+                    aria-label="Send an email to stephen@studiomod.uk"
+                  >
+                    Get in touch<span className="sr-only"> via email</span>
+                  </a>
+                </motion.div>
+              </div>
+            </nav>
+
+            {/* Hero Content */}
+            <motion.section
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-white mt-12  md:py-32 md:px-6 text-center rounded-3xl mx-auto z-1"
+            >
+              <div className="space-y-4 flex flex-col items-center justify-between h-full">
+                {/* <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -145,76 +163,77 @@ export default function Home() {
                 1,335 People are on waitlist
               </motion.div> */}
 
-              <motion.h1
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.7 }}
-                className="text-5xl md:text-7xl font-semibold text-white md:min-w-[80%] lg:max-w-[80%]"
-              >
-                Explore and grow through{" "}
-                <span className="italic font-serif">serious play</span>
-              </motion.h1>
+                <motion.h1
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1, duration: 0.7 }}
+                  className="text-5xl md:text-7xl font-semibold text-white md:min-w-[80%] lg:max-w-[80%]"
+                >
+                  Explore and grow through{" "}
+                  <span className="italic font-serif">serious play</span>
+                </motion.h1>
 
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-white/90 md:max-w-xl mx-auto text-xl md:text-2xl"
-              >
-                We develop educational growing kits and products inspired by
-                nature. <br />
-              </motion.p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.6 }}
+                  className="text-white/90 md:max-w-xl mx-auto text-xl md:text-2xl"
+                >
+                  We develop educational growing kits and products inspired by
+                  nature. <br />
+                </motion.p>
 
-              {/* <div className="min-h-[30vh]"> */}
-              {/* <p className="text-white/70  mb-6">
+                {/* <div className="min-h-[30vh]"> */}
+                {/* <p className="text-white/70  mb-6">
                   Be amongst the first to experience Wait and launch a viral
                   waitlist. Sign up to be notified when we launch!
                 </p> */}
-              <form
-                onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-6 w-full md:max-w-xl mx-auto mt-6 md:mt-12"
-              >
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="px-4 py-3 rounded-full bg-white/20 backdrop-blur-lg text--slate-900 border w-full placeholder-white outline-none md:min-w-[400px] "
-                />
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
-                  type="submit"
-                  className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-300 transition cursor-pointer w-full"
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-6 w-full md:max-w-xl mx-auto mt-6 md:mt-12"
                 >
-                  Join waitlist
-                </motion.button>
-              </form>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="px-4 py-3 rounded-full bg-white/20 backdrop-blur-lg text--slate-900 border w-full placeholder-white outline-none md:min-w-[400px] "
+                  />
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
+                    type="submit"
+                    className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-300 transition cursor-pointer w-full"
+                  >
+                    Join waitlist
+                  </motion.button>
+                </form>
 
-              <div className="flex justify-center text-center text-white text-sm md:text-xl font-semibold mb-1 md:mb-2">
-                {["days", "hours", "minutes", "seconds"].map((unit) => (
-                  <div key={unit} className="mx-3">
-                    <div>{timeLeft[unit as keyof typeof timeLeft]}</div>
-                    <div className="text-[10px] md:text-sm text-neutral-400 uppercase">
-                      {unit}
+                <div className="flex justify-center text-center text-white text-sm md:text-xl font-semibold mb-1 md:mb-2">
+                  {["days", "hours", "minutes", "seconds"].map((unit) => (
+                    <div key={unit} className="mx-3">
+                      <div>{timeLeft[unit as keyof typeof timeLeft]}</div>
+                      <div className="text-[10px] md:text-sm text-neutral-400 uppercase">
+                        {unit}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+
+                <div className="text-[10px] md:text-sm text-neutral-100 mt-0 md:mt-2">
+                  📅 LEFT UNTIL LAUNCH
+                </div>
               </div>
 
-              <div className="text-[10px] md:text-sm text-neutral-100 mt-0 md:mt-2">
-                📅 LEFT UNTIL LAUNCH
-              </div>
-            </div>
-
-            {/* <button className="mt-6 px-6 py-2 bg-white text-black rounded-full font-medium hover:bg-gray-100 transition cursor-pointer">
+              {/* <button className="mt-6 px-6 py-2 bg-white text-black rounded-full font-medium hover:bg-gray-100 transition cursor-pointer">
               Get Started
             </button> */}
-            {/* </div> */}
-          </motion.section>
-        </div>
-      </main>
-    </motion.div>
+              {/* </div> */}
+            </motion.section>
+          </div>
+        </main>
+      </motion.div>
+    </>
   );
 }
