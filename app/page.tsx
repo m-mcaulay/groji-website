@@ -123,7 +123,7 @@ export default function Home() {
     window.addEventListener("resize", setViewportHeight);
     return () => window.removeEventListener("resize", setViewportHeight);
   }, []);
-  // add mouse paint different plant emoji
+
   // reaqcuaint myself with the email submission and what we need for that
   // remember time left until release
   // connect to my own airtable as practice - check if want to add resend later if you want to start sending emails then how easy is it
@@ -158,7 +158,12 @@ export default function Home() {
                 whileTap={{ scale: 0.97 }}
                 className="text-white cursor-pointer font-medium border border-white bg-[#0703fc] rounded-full text-sm md:text-lg px-6 py-2 md:px-8 md:py-3 hover:bg-gray-300 hover:text-black transition"
               >
-                <a>Get in touch</a>
+                <a
+                  href="mailto:stephen@studiomod.uk"
+                  aria-label="Send an email to stephen@studiomod.uk"
+                >
+                  Get in touch<span className="sr-only"> via email</span>
+                </a>
               </motion.div>
             </div>
           </nav>
