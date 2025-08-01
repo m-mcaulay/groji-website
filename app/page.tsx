@@ -6,38 +6,6 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import EmojiPainter from "@/components/emoji-painter";
 
-// ✅ Airtable Setup Guide
-// Go to airtable.com and create a base with:
-
-// Table name: Waitlist
-
-// Field: Email (type: email)
-
-// Get your API key and Base ID:
-
-// Base ID: Found in the API docs (https://airtable.com/{baseId}/api/docs)
-
-// API Key: From your Airtable account settings
-
-// Replace:
-
-// ts
-// Copy
-// Edit
-// axios.post('https://api.airtable.com/v0/appID/TableName', ...
-// with:
-
-// ts
-// Copy
-// Edit
-// axios.post('https://api.airtable.com/v0/YOUR_BASE_ID/Waitlist', ...
-// And set the correct Authorization header.
-
-// 🧪 Notes
-// You can move the Airtable POST logic into an API route (e.g., /api/waitlist) if you want to hide your API key from frontend.
-
-// Use Environment Variables for your Airtable key
-
 type TimeLeft = {
   days: number;
   hours: number;
@@ -104,27 +72,17 @@ export default function Home() {
       return;
     }
 
-    toast.promise(
-      axios.post(
-        "https://api.airtable.com/v0/appID/TableName",
-        {
-          fields: { Email: email },
-        },
-        {
-          headers: {
-            Authorization: `Bearer YOUR_AIRTABLE_API_KEY`,
-            "Content-Type": "application/json",
-          },
-        }
-      ),
-      {
+    try {
+      await toast.promise(axios.post("/api/join-waitlist", { email }), {
         loading: "Joining waitlist...",
         success: "You’ve been added to the waitlist!",
         error: "There was a problem. Please try again.",
-      }
-    );
+      });
 
-    setEmail("");
+      setEmail("");
+    } catch (err) {
+      console.error("Error submitting email:", err);
+    }
   };
 
   useEffect(() => {
@@ -138,10 +96,10 @@ export default function Home() {
     return () => window.removeEventListener("resize", setViewportHeight);
   }, []);
 
-  // reaqcuaint myself with the email submission and what we need for that
-  // remember time left until release
-  // connect to my own airtable as practice - check if want to add resend later if you want to start sending emails then how easy is it
   // SEO - create a good implementation for that - its a repetitive task
+  // create checklist of what we do have, and checklist of what we can do next when your ready
+  // 🧪 Notes
+  // You can move the Airtable POST logic into an API route (e.g., /api/waitlist) if you want to hide your API key from frontend.
   return (
     <motion.div
       initial={{ opacity: 0 }}
