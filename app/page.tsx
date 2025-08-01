@@ -260,7 +260,7 @@ export default function Home() {
               </div>
 
               <div className="text-xs md:text-sm text-neutral-100 mt-0 md:mt-2">
-                📅 LEFT UNTIL FULL LAUNCH
+                📅 LEFT UNTIL LAUNCH
               </div>
             </div>
 
