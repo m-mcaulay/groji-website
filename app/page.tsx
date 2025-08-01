@@ -112,6 +112,17 @@ export default function Home() {
 
     setEmail("");
   };
+
+  useEffect(() => {
+    const setViewportHeight = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    setViewportHeight();
+    window.addEventListener("resize", setViewportHeight);
+    return () => window.removeEventListener("resize", setViewportHeight);
+  }, []);
   // add mouse paint different plant emoji
   // reaqcuaint myself with the email submission and what we need for that
   // remember time left until release
