@@ -113,7 +113,6 @@ export default function Home() {
   };
   // add mouse paint different plant emoji
   // reaqcuaint myself with the email submission and what we need for that
-  // deploy to vercel
   // remember time left until release
   // connect to my own airtable as practice
   // make favicon white G
@@ -129,8 +128,8 @@ export default function Home() {
       >
         <div className="text-center flex flex-col justify-center min-h-screen">
           <nav className="flex justify-center p-6 text-slate-900 font-bold">
-            <div className="absolute top-6 left-6">
-              <div className="flex items-center justify-center text-white">
+            <div className="absolute top-4 left-4">
+              <div className="flex items-center justify-center text-white text-4xl">
                 Groji
               </div>
             </div>
@@ -176,9 +175,9 @@ export default function Home() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.7 }}
-                className="text-5xl md:text-7xl font-semibold text-white md:min-w-[90%] lg:max-w-[70%]"
+                className="text-5xl md:text-7xl font-semibold text-white md:min-w-[80%] lg:max-w-[80%]"
               >
-                Groji. Explore and grow through{" "}
+                Explore and grow through{" "}
                 <span className="italic font-serif">serious play</span>
               </motion.h1>
 
