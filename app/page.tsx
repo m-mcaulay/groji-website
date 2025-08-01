@@ -228,7 +228,7 @@ export default function Home() {
                 </p> */}
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-6 w-full md:max-w-xl mx-auto mt-12"
+                className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-6 w-full md:max-w-xl mx-auto mt-6 md:mt-12"
               >
                 <input
                   type="email"
