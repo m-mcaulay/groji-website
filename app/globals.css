@@ -42,4 +42,5 @@ input:-webkit-autofill {
   -webkit-text-fill-color: #ffffff !important;
   transition: background-color 5000s ease-in-out 0s;
   border-radius: 9999px;
+  border: 1px solid white;
 }
