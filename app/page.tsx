@@ -98,8 +98,6 @@ export default function Home() {
 
   // SEO - create a good implementation for that - its a repetitive task
   // create checklist of what we do have, and checklist of what we can do next when your ready
-  // 🧪 Notes
-  // You can move the Airtable POST logic into an API route (e.g., /api/waitlist) if you want to hide your API key from frontend.
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -114,16 +112,6 @@ export default function Home() {
             <div className="flex items-center justify-center text-white text-xl md:text-3xl">
               Groji
             </div>
-
-            {/* {["Home", "Our Story", "FAQ", "Policies"].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="hover:underline underline-offset-4 decoration-slate-900 bg-blue-100 p-3 rounded-4xl cursor-pointer"
-              >
-                {item}
-              </a>
-            ))} */}
             <div className="">
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -175,8 +163,6 @@ export default function Home() {
               >
                 We develop educational growing kits and products inspired by
                 nature. <br />
-                {/* At Groji, we are dedicated to supporting continuous learning and
-                development. */}
               </motion.p>
 
               {/* <div className="min-h-[30vh]"> */}
