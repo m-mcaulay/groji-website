@@ -144,11 +144,11 @@ export default function Home() {
                 {item}
               </a>
             ))} */}
-            <div className="absolute top-6 right-6">
+            <div className="absolute top-4 right-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="text-white cursor-pointer font-medium border rounded-full px-6 py-2 hover:bg-gray-300 hover:text-black transition"
+                className="text-white cursor-pointer font-medium border rounded-full px-8 py-3 hover:bg-gray-300 hover:text-black transition"
               >
                 Get in touch
               </motion.button>
@@ -176,7 +176,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.7 }}
-                className="text-5xl md:text-7xl font-semibold text-white max-w-[60%]"
+                className="text-5xl md:text-7xl font-semibold text-white md:min-w-[90%] lg:max-w-[70%]"
               >
                 Groji. Explore and grow through{" "}
                 <span className="italic font-serif">serious play</span>
@@ -215,7 +215,7 @@ export default function Home() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
                   type="submit"
-                  className="px-6 py-2 bg-white text-black rounded-full font-medium hover:bg-gray-300 transition cursor-pointer w-full"
+                  className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-300 transition cursor-pointer w-full"
                 >
                   Join waitlist
                 </motion.button>
