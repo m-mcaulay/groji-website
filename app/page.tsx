@@ -114,8 +114,8 @@ export default function Home() {
   // add mouse paint different plant emoji
   // reaqcuaint myself with the email submission and what we need for that
   // remember time left until release
-  // connect to my own airtable as practice
-  // make favicon white G
+  // connect to my own airtable as practice - check if want to add resend later if you want to start sending emails then how easy is it
+  // SEO - create a good implementation for that - its a repetitive task
   return (
     <motion.div
       initial={{ opacity: 0 }}
