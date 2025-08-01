@@ -111,7 +111,12 @@ export default function Home() {
 
     setEmail("");
   };
-
+  // add mouse paint different plant emoji
+  // make button and input padding standardised
+  // add button hover states that are interesting
+  // reaqcuaint myself with the email submission and what we need for that
+  // deploy to vercel
+  // remember time left until release
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -119,14 +124,14 @@ export default function Home() {
       transition={{ duration: 1 }}
     >
       <main
-        className="min-h-screen bg-gradient-to-b from-slate-300 via-slate-600 to-slate-900 px-4
+        className="min-h-screen bg-[#0703fc] px-4
       overflow-hidden"
       >
         <div className="text-center flex flex-col justify-center min-h-screen">
           <nav className="flex justify-center p-6 text-slate-900 font-bold">
             <div className="absolute top-6 left-6">
-              <div className="w-6 h-6 border border-white rounded-full flex items-center justify-center text-black">
-                +
+              <div className="flex items-center justify-center text-white">
+                Groji
               </div>
             </div>
 
@@ -140,7 +145,13 @@ export default function Home() {
               </a>
             ))} */}
             <div className="absolute top-6 right-6">
-              <button className="text-white text-xl cursor-pointer">📞</button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className="text-white cursor-pointer font-medium border rounded-full px-6 py-2 hover:bg-gray-300 hover:text-black transition"
+              >
+                Get in touch
+              </motion.button>
             </div>
           </nav>
 
@@ -152,33 +163,35 @@ export default function Home() {
             className=" text-white md:py-16 md:px-6 text-center rounded-3xl mx-auto"
           >
             <div className="space-y-4 flex flex-col items-center justify-between h-full">
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 className="text-white text-sm bg-white/30 backdrop-blur-lg rounded-full border-b border-b-0.1 border-white px-4 py-1 w-fit"
               >
                 1,335 People are on waitlist
-              </motion.div>
+              </motion.div> */}
 
               <motion.h1
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.7 }}
-                className="text-5xl md:text-7xl font-semibold text-white"
+                className="text-5xl md:text-7xl font-semibold text-white max-w-[60%]"
               >
-                Clarity in <span className="italic font-serif">Complexity</span>
+                Groji. Explore and grow through{" "}
+                <span className="italic font-serif">serious play</span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-white/70 md:max-w-xl mx-auto text-sm sm:text-base"
+                className="text-white/90 md:max-w-xl mx-auto text-2xl"
               >
-                We help you decode the noise. One insight at a time. <br />
-                Transform chaos into clarity with intelligent solutions built
-                for scale.
+                We develop educational growing kits and products inspired by
+                nature. <br />
+                {/* At Groji, we are dedicated to supporting continuous learning and
+                development. */}
               </motion.p>
 
               {/* <div className="min-h-[30vh]"> */}
@@ -202,9 +215,9 @@ export default function Home() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
                   type="submit"
-                  className="px-6 py-2 bg-white/70 text-black rounded-full font-medium hover:bg-gray-300 transition cursor-pointer w-full"
+                  className="px-6 py-2 bg-white text-black rounded-full font-medium hover:bg-gray-300 transition cursor-pointer w-full"
                 >
-                  Join Waitlist
+                  Join waitlist
                 </motion.button>
               </form>
 
@@ -219,8 +232,8 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="text-sm text-neutral-500 mt-2">
-                📅 LEFT UNTIL FULL RELEASE
+              <div className="text-sm text-neutral-100 mt-2">
+                📅 LEFT UNTIL FULL LAUNCH
               </div>
             </div>
 
