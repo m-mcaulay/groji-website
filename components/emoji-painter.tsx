@@ -46,12 +46,17 @@ const EmojiPainter: React.FC = () => {
       requestAnimationFrame(() => handleMove(e));
     };
 
+    const preventTouch = (e: TouchEvent) => {
+      e.preventDefault();
+      throttled(e);
+    };
+
     window.addEventListener("mousemove", throttled);
-    window.addEventListener("touchmove", throttled);
+    window.addEventListener("touchmove", preventTouch, { passive: false });
 
     return () => {
       window.removeEventListener("mousemove", throttled);
-      window.removeEventListener("touchmove", throttled);
+      window.removeEventListener("touchmove", preventTouch);
     };
   }, []);
 
