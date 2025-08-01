@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import EmojiPainter from "@/components/emoji-painter";
 
 // ✅ Airtable Setup Guide
 // Go to airtable.com and create a base with:
@@ -126,7 +127,8 @@ export default function Home() {
         className="min-h-screen bg-[#0703fc] px-4
       overflow-hidden"
       >
-        <div className="text-center flex flex-col justify-center min-h-screen">
+        <EmojiPainter />
+        <div className="text-center flex flex-col justify-center min-h-screen z-1">
           <nav className="flex justify-center p-6 text-slate-900 font-bold">
             <div className="absolute top-4 left-4">
               <div className="flex items-center justify-center text-white text-3xl">
@@ -159,7 +161,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className=" text-white md:py-16 md:px-6 text-center rounded-3xl mx-auto"
+            className=" text-white md:py-16 md:px-6 text-center rounded-3xl mx-auto z-1"
           >
             <div className="space-y-4 flex flex-col items-center justify-between h-full">
               {/* <motion.div
