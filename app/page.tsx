@@ -135,17 +135,12 @@ export default function Home() {
       transition={{ duration: 1 }}
       className="overflow-hidden"
     >
-      <main
-        className="full-screen-height bg-[#0703fc] px-4
-      overflow-hidden"
-      >
+      <main className="full-screen-height bg-[#0703fc] px-4 overflow-hidden">
         <EmojiPainter />
         <div className="text-center flex flex-col justify-center full-screen-height z-1 max-h-screen overflow-y-hidden">
-          <nav className="flex justify-center p-6 text-slate-900 font-bold">
-            <div className="absolute top-5 md:top-4 left-4">
-              <div className="flex items-center justify-center text-white text-xl md:text-3xl">
-                Groji
-              </div>
+          <nav className="absolute top-5 md:top-6 left-4 right-4 flex justify-between items-center font-bold">
+            <div className="flex items-center justify-center text-white text-xl md:text-3xl">
+              Groji
             </div>
 
             {/* {["Home", "Our Story", "FAQ", "Policies"].map((item) => (
@@ -157,14 +152,14 @@ export default function Home() {
                 {item}
               </a>
             ))} */}
-            <div className="absolute top-6 right-4">
-              <motion.a
+            <div className="">
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="text-white cursor-pointer font-medium border rounded-full text-sm px-6 py-2 md:px-8 md:py-3 hover:bg-gray-300 hover:text-black transition"
+                className="text-white cursor-pointer font-medium border border-white bg-[#0703fc] rounded-full text-sm md:text-lg px-6 py-2 md:px-8 md:py-3 hover:bg-gray-300 hover:text-black transition"
               >
-                Get in touch
-              </motion.a>
+                <a>Get in touch</a>
+              </motion.div>
             </div>
           </nav>
 
@@ -173,7 +168,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className=" text-white md:py-16 md:px-6 text-center rounded-3xl mx-auto z-1"
+            className=" text-white mt-32 md:py-32 md:px-6 text-center rounded-3xl mx-auto z-1"
           >
             <div className="space-y-4 flex flex-col items-center justify-between h-full">
               {/* <motion.div
