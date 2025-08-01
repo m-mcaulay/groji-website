@@ -131,7 +131,7 @@ export default function Home() {
         <div className="text-center flex flex-col justify-center min-h-screen z-1 max-h-screen overflow-y-hidden">
           <nav className="flex justify-center p-6 text-slate-900 font-bold">
             <div className="absolute top-4 left-4">
-              <div className="flex items-center justify-center text-white text-3xl">
+              <div className="flex items-center justify-center text-white text-2xl md:text-3xl">
                 Groji
               </div>
             </div>
@@ -187,7 +187,7 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-white/90 md:max-w-xl mx-auto text-2xl"
+                className="text-white/90 md:max-w-xl mx-auto text-xl md:text-2xl"
               >
                 We develop educational growing kits and products inspired by
                 nature. <br />
