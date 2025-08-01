@@ -129,7 +129,7 @@ export default function Home() {
         <div className="text-center flex flex-col justify-center min-h-screen">
           <nav className="flex justify-center p-6 text-slate-900 font-bold">
             <div className="absolute top-4 left-4">
-              <div className="flex items-center justify-center text-white text-4xl">
+              <div className="flex items-center justify-center text-white text-3xl">
                 Groji
               </div>
             </div>
