@@ -248,7 +248,7 @@ export default function Home() {
                 </motion.button>
               </form>
 
-              <div className="flex justify-center text-center text-white text-lg md:text-xl font-semibold mb-2">
+              <div className="flex justify-center text-center text-white text-m md:text-xl font-semibold mb-2">
                 {["days", "hours", "minutes", "seconds"].map((unit) => (
                   <div key={unit} className="mx-3">
                     <div>{timeLeft[unit as keyof typeof timeLeft]}</div>
@@ -259,7 +259,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="text-xs md:text-sm text-neutral-100 mt-2">
+              <div className="text-xs md:text-sm text-neutral-100 mt-0 md:mt-2">
                 📅 LEFT UNTIL FULL LAUNCH
               </div>
             </div>
