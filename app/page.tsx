@@ -228,7 +228,7 @@ export default function Home() {
                 </p> */}
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-6 w-full md:max-w-xl mx-auto mt-12 md:mt-12"
+                className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-6 w-full md:max-w-xl mx-auto mt-6 md:mt-12"
               >
                 <input
                   type="email"
@@ -248,18 +248,18 @@ export default function Home() {
                 </motion.button>
               </form>
 
-              <div className="flex justify-center text-center text-white text-m md:text-xl font-semibold mb-2">
+              <div className="flex justify-center text-center text-white text-sm md:text-xl font-semibold mb-1 md:mb-2">
                 {["days", "hours", "minutes", "seconds"].map((unit) => (
                   <div key={unit} className="mx-3">
                     <div>{timeLeft[unit as keyof typeof timeLeft]}</div>
-                    <div className="text-xs md:text-sm text-neutral-400 uppercase">
+                    <div className="text-[10px] md:text-sm text-neutral-400 uppercase">
                       {unit}
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="text-xs md:text-sm text-neutral-100 mt-0 md:mt-2">
+              <div className="text-[10px] md:text-sm text-neutral-100 mt-0 md:mt-2">
                 📅 LEFT UNTIL LAUNCH
               </div>
             </div>
