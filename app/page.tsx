@@ -112,11 +112,11 @@ export default function Home() {
     setEmail("");
   };
   // add mouse paint different plant emoji
-  // make button and input padding standardised
-  // add button hover states that are interesting
   // reaqcuaint myself with the email submission and what we need for that
   // deploy to vercel
   // remember time left until release
+  // connect to my own airtable as practice
+  // make favicon white G
   return (
     <motion.div
       initial={{ opacity: 0 }}
