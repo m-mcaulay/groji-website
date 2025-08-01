@@ -142,8 +142,8 @@ export default function Home() {
         <EmojiPainter />
         <div className="text-center flex flex-col justify-center full-screen-height z-1 max-h-screen overflow-y-hidden">
           <nav className="flex justify-center p-6 text-slate-900 font-bold">
-            <div className="absolute top-4 left-4">
-              <div className="flex items-center justify-center text-white text-2xl md:text-3xl">
+            <div className="absolute top-5 md:top-4 left-4">
+              <div className="flex items-center justify-center text-white text-xl md:text-3xl">
                 Groji
               </div>
             </div>
@@ -161,7 +161,7 @@ export default function Home() {
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="text-white cursor-pointer font-medium border rounded-full px-8 py-3 hover:bg-gray-300 hover:text-black transition"
+                className="text-white cursor-pointer font-medium border rounded-full text-sm px-6 py-2 md:px-8 md:py-3 hover:bg-gray-300 hover:text-black transition"
               >
                 Get in touch
               </motion.a>
