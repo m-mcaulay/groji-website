@@ -126,7 +126,7 @@ export default function Home() {
         <main className="full-screen-height bg-[#0703fc] px-4 overflow-hidden">
           <EmojiPainter />
           <div className="text-center flex flex-col justify-center full-screen-height z-1 max-h-screen overflow-y-hidden">
-            <nav className="absolute top-5 md:top-6 left-4 right-4 flex justify-between items-center font-bold">
+            <nav className="absolute top-5 md:top-6 md:left-6 md:right-6 left-4 right-4 flex justify-between items-center font-bold">
               <div className="flex items-center justify-center text-white text-xl md:text-3xl">
                 Groji
               </div>
