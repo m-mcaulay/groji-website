@@ -187,7 +187,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className=" text-white  md:py-32 md:px-6 text-center rounded-3xl mx-auto z-1"
+            className="text-white mt-12  md:py-32 md:px-6 text-center rounded-3xl mx-auto z-1"
           >
             <div className="space-y-4 flex flex-col items-center justify-between h-full">
               {/* <motion.div
