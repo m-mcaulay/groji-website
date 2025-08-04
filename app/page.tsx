@@ -212,7 +212,7 @@ export default function Home() {
                   {["days", "hours", "minutes", "seconds"].map((unit) => (
                     <div key={unit} className="mx-3">
                       <div>{timeLeft[unit as keyof typeof timeLeft]}</div>
-                      <div className="text-[10px] md:text-sm text-neutral-400 uppercase">
+                      <div className="text-[10px] md:text-sm text-neutral-200 uppercase">
                         {unit}
                       </div>
                     </div>
