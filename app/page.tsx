@@ -75,13 +75,13 @@ export default function Home() {
 
     toast.promise(
       axios.post(
-        "https://api.airtable.com/v0/appID/TableName",
+        "https://api.airtable.com/v0/appQLbY8b4ViQkWFB/Waitlist",
         {
           fields: { Email: email },
         },
         {
           headers: {
-            Authorization: `Bearer YOUR_AIRTABLE_API_KEY`,
+            Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`,
             "Content-Type": "application/json",
           },
         }
