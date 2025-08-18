@@ -73,17 +73,27 @@ export default function Home() {
       return;
     }
 
-    try {
-      await toast.promise(axios.post("/api/join-waitlist", { email }), {
+    toast.promise(
+      axios.post(
+        "https://api.airtable.com/v0/appID/TableName",
+        {
+          fields: { Email: email },
+        },
+        {
+          headers: {
+            Authorization: `Bearer YOUR_AIRTABLE_API_KEY`,
+            "Content-Type": "application/json",
+          },
+        }
+      ),
+      {
         loading: "Joining waitlist...",
         success: "You’ve been added to the waitlist!",
         error: "There was a problem. Please try again.",
-      });
+      }
+    );
 
-      setEmail("");
-    } catch (err) {
-      console.error("Error submitting email:", err);
-    }
+    setEmail("");
   };
 
   useEffect(() => {
