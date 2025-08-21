@@ -125,7 +125,7 @@ export default function Home() {
         transition={{ duration: 1 }}
         className="overflow-hidden"
       >
-        <main className="full-screen-height bg-[#0703fc] px-4 overflow-hidden">
+        <main className="full-screen-height bg-[#b645fc] px-4 overflow-hidden">
           <EmojiPainter />
           <div className="text-center flex flex-col justify-center full-screen-height z-1 max-h-screen overflow-y-hidden">
             <nav className="absolute top-5 md:top-6 md:left-6 md:right-6 left-4 right-4 flex justify-between items-center font-bold">
@@ -136,7 +136,7 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  className="text-white cursor-pointer font-medium border border-white bg-[#0703fc] rounded-full text-sm md:text-lg px-6 py-2 md:px-8 md:py-3 hover:bg-gray-300 hover:text-black transition"
+                  className="text-white cursor-pointer font-medium border border-white bg-[#b645fc] rounded-full text-sm md:text-lg px-6 py-2 md:px-8 md:py-3 hover:bg-gray-300 hover:text-black transition"
                 >
                   <a
                     href="mailto:stephen@studiomod.uk"
@@ -169,11 +169,12 @@ export default function Home() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.7 }}
-                  className="text-5xl md:text-7xl font-semibold text-white md:min-w-[80%] lg:max-w-[80%]"
+                  className="text-5xl md:text-7xl font-semibold leading-[1.1] text-white md:min-w-[100%] lg:max-w-[100%]"
                 >
-                  Explore and grow through{" "}
-                  <span className="italic font-serif">serious play</span>
+                  Explore, Play, <span className="italic font-serif">Grow</span>
+                  .<br />
                 </motion.h1>
+                {/* <motion.h2>Where Curiosity Blooms.</motion.h2> */}
 
                 <motion.p
                   initial={{ opacity: 0 }}
@@ -181,6 +182,7 @@ export default function Home() {
                   transition={{ delay: 0.3, duration: 0.6 }}
                   className="text-white/90 md:max-w-xl mx-auto text-xl md:text-2xl"
                 >
+                  <br />
                   We develop educational growing kits and products inspired by
                   nature. <br />
                 </motion.p>
