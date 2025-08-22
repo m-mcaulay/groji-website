@@ -125,7 +125,7 @@ export default function Home() {
         transition={{ duration: 1 }}
         className="overflow-hidden"
       >
-        <main className="full-screen-height bg-[#b645fc] px-4 overflow-hidden">
+        <main className="full-screen-height bg-[#ad95d1] px-4 overflow-hidden">
           <EmojiPainter />
           <div className="text-center flex flex-col justify-center full-screen-height z-1 max-h-screen overflow-y-hidden">
             <nav className="absolute top-5 md:top-6 md:left-6 md:right-6 left-4 right-4 flex justify-between items-center font-bold">
@@ -136,7 +136,7 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  className="text-white cursor-pointer font-medium border border-white bg-[#b645fc] rounded-full text-sm md:text-lg px-6 py-2 md:px-8 md:py-3 hover:bg-gray-300 hover:text-black transition"
+                  className="text-white cursor-pointer font-medium border border-white bg-[#ad95d1] rounded-full text-sm md:text-lg px-6 py-2 md:px-8 md:py-3 hover:bg-[#67714c] hover:border-[#67714c] hover:text-white transition"
                 >
                   <a
                     href="mailto:stephen@studiomod.uk"
@@ -208,7 +208,7 @@ export default function Home() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.97 }}
                     type="submit"
-                    className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-300 transition cursor-pointer w-full"
+                    className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-[#67714c] hover:text-white transition cursor-pointer w-full"
                   >
                     Join waitlist
                   </motion.button>
