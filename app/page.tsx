@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import EmojiPainter from "@/components/emoji-painter";
+import Link from "next/link";
 
 type TimeLeft = {
   days: number;
@@ -16,6 +17,8 @@ type TimeLeft = {
 
 export default function Home() {
   const [email, setEmail] = useState("");
+  const [marketingConsent, setMarketingConsent] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -74,19 +77,36 @@ export default function Home() {
     }
 
     try {
-      await toast.promise(axios.post("/api/join-waitlist", { email }), {
-        loading: "Joining waitlist...",
-        success: "You’ve been added to the waitlist!",
-        error: (err) => {
-          if (err.response?.status === 409)
-            return "You're already on the waitlist.";
-          return "There was a problem. Please try again.";
-        },
-      });
+      setLoading?.(true); // if you have a loading state; otherwise remove
 
+      await toast.promise(
+        axios.post("/api/join-waitlist", {
+          email,
+          // freeTier, // <- NEW
+          marketingConsent, // <- NEW
+          source: "waitlist-landing", // optional, useful for analytics
+        }),
+        {
+          loading: "Joining waitlist...",
+          success: "You’ve been added to the waitlist!",
+          error: (err) => {
+            if (err.response?.status === 409)
+              return "You're already on the waitlist.";
+            if (err.response?.status === 400)
+              return "That email looks invalid.";
+            return "There was a problem. Please try again.";
+          },
+        }
+      );
+
+      // Reset on success
       setEmail("");
+      // setFreeTier?.(false);
+      setMarketingConsent?.(false);
     } catch (err) {
       console.error("Error submitting email:", err);
+    } finally {
+      setLoading?.(false);
     }
   };
 
@@ -100,6 +120,15 @@ export default function Home() {
     window.addEventListener("resize", setViewportHeight);
     return () => window.removeEventListener("resize", setViewportHeight);
   }, []);
+
+  // colors
+  // #8657ce - new purple
+  // #ad95d1 - original from steves swatch
+  // #6e38c0 -this one passes
+  // #525a3d - this green passes
+  // #6f2fcd - this one passes
+  // #5b06e8
+  // green border-[hsl(10 20% 100%)] bg-[#305900]
 
   return (
     <>
@@ -125,18 +154,18 @@ export default function Home() {
         transition={{ duration: 1 }}
         className="overflow-hidden"
       >
-        <main className="full-screen-height bg-[#ad95d1] px-4 overflow-hidden">
+        <main className="full-screen-height bg-[#3c27ff] px-4 overflow-hidden">
           <EmojiPainter />
           <div className="text-center flex flex-col justify-center full-screen-height z-1 max-h-screen overflow-y-hidden">
             <nav className="absolute top-5 md:top-6 md:left-6 md:right-6 left-4 right-4 flex justify-between items-center font-bold">
-              <div className="flex items-center justify-center text-white text-xl md:text-3xl">
+              <div className="flex items-center justify-center text-[hsl(280 30% 100%)] text-xl md:text-3xl">
                 Groji
               </div>
               <div className="">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  className="text-white cursor-pointer font-medium border border-white bg-[#ad95d1] rounded-full text-sm md:text-lg px-6 py-2 md:px-8 md:py-3 hover:bg-[#67714c] hover:border-[#67714c] hover:text-white transition"
+                  className="text-white cursor-pointer font-bold border border-[hsl(280 30% 100%)] bg-white/20 backdrop-blur-lg rounded-full text-sm md:text-lg px-6 py-2 md:px-8 md:py-3  hover:text-[hsl(280 30% 100%)] transition"
                 >
                   <a
                     href="mailto:stephen@studiomod.uk"
@@ -153,14 +182,14 @@ export default function Home() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-white mt-12  md:py-32 md:px-6 text-center rounded-3xl mx-auto z-1"
+              className="text-[hsl(280 30% 100%)] mt-12  md:py-32 md:px-6 text-center rounded-3xl mx-auto z-1"
             >
               <div className="space-y-4 flex flex-col items-center justify-between h-full">
                 {/* <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-white text-sm bg-white/30 backdrop-blur-lg rounded-full border-b border-b-0.1 border-white px-4 py-1 w-fit"
+                className="text-[hsl(280 30% 100%)] text-sm bg-white/30 backdrop-blur-lg rounded-full border-b border-b-0.1 border-white px-4 py-1 w-fit"
               >
                 1,335 People are on waitlist
               </motion.div> */}
@@ -169,7 +198,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.7 }}
-                  className="text-5xl md:text-7xl font-semibold leading-[1.1] text-white md:min-w-[100%] lg:max-w-[100%]"
+                  className="text-5xl md:text-7xl font-semibold leading-[1.1] text-[hsl(280 30% 100%)] md:min-w-[100%] lg:max-w-[100%]"
                 >
                   Explore, Play, <span className="italic font-serif">Grow</span>
                   .<br />
@@ -180,7 +209,7 @@ export default function Home() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="text-white/90 md:max-w-xl mx-auto text-xl md:text-2xl"
+                  className="text-[hsl(280 30% 100%)]/90 md:max-w-xl mx-auto text-xl md:text-2xl"
                 >
                   <br />
                   We develop educational growing kits and products inspired by
@@ -188,33 +217,60 @@ export default function Home() {
                 </motion.p>
 
                 {/* <div className="min-h-[30vh]"> */}
-                {/* <p className="text-white/70  mb-6">
+                {/* <p className="text-[hsl(280 30% 100%)]/70  mb-6">
                   Be amongst the first to experience Wait and launch a viral
                   waitlist. Sign up to be notified when we launch!
                 </p> */}
                 <form
                   onSubmit={handleSubmit}
-                  className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-6 w-full md:max-w-xl mx-auto mt-6 md:mt-12"
+                  className="flex flex-col items-center gap-3 mb-6 w-full md:max-w-xl mx-auto mt-6 md:mt-12"
                 >
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="px-4 py-3 rounded-full bg-white/20 backdrop-blur-lg text--slate-900 border w-full placeholder-white outline-none md:min-w-[400px] "
-                  />
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.97 }}
-                    type="submit"
-                    className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-[#67714c] hover:text-white transition cursor-pointer w-full"
-                  >
-                    Join waitlist
-                  </motion.button>
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-3 w-full">
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="px-4 py-3 rounded-full bg-white/20 backdrop-blur-lg text-white border font-bold border-white w-full placeholder-white outline-none md:min-w-[400px] md:max-w-[300px]"
+                    />
+
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.97 }}
+                      type="submit"
+                      className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-white/20 hover:backdrop-blur-lg hover:text-white hover:border hover:border-white transition cursor-pointer w-full sm:w-auto"
+                    >
+                      Join waitlist
+                    </motion.button>
+                  </div>
+
+                  {/* Marketing consent on its own line below */}
+                  <div className="w-full flex justify-center">
+                    <label className="flex items-center gap-2 text-xs text-[hsl(280 30% 100%)]/80 mt-2">
+                      <input
+                        type="checkbox"
+                        checked={marketingConsent}
+                        onChange={(e) => setMarketingConsent(e.target.checked)}
+                        className="h-5 w-5 rounded border-white/40 bg-white/90 z-10 pointer-events-auto"
+                      />
+                      I’d like to receive occasional updates, offers, and news
+                      (optional).
+                    </label>
+                  </div>
+
+                  {/* Privacy note small and muted, below everything */}
+                  <p className="text-[11px] text-[hsl(280 30% 100%)]/70 mt-2 text-center max-w-sm">
+                    We’ll email you when we launch (legitimate interest).
+                    Marketing emails are only sent if you opt in. See our{" "}
+                    <Link href="/privacy-policy" className="underline">
+                      Privacy Notice
+                    </Link>
+                    . Unsubscribe anytime.
+                  </p>
                 </form>
 
-                <div className="flex justify-center text-center text-white text-sm md:text-xl font-semibold mb-1 md:mb-2">
+                {/* <div className="flex justify-center text-center text-[hsl(280 30% 100%)] text-sm md:text-xl font-semibold mb-1 md:mb-2 w-full">
                   {["days", "hours", "minutes", "seconds"].map((unit) => (
                     <div key={unit} className="mx-3">
                       <div>{timeLeft[unit as keyof typeof timeLeft]}</div>
@@ -227,7 +283,7 @@ export default function Home() {
 
                 <div className="text-[10px] md:text-sm text-neutral-100 mt-0 md:mt-2">
                   📅 LEFT UNTIL LAUNCH
-                </div>
+                </div> */}
               </div>
 
               {/* <button className="mt-6 px-6 py-2 bg-white text-black rounded-full font-medium hover:bg-gray-100 transition cursor-pointer">
@@ -238,6 +294,24 @@ export default function Home() {
           </div>
         </main>
       </motion.div>
+      <footer className="flex justify-between items-center w-full p-2 absolute bottom-0 text-sm">
+        <p>© Groji 2025</p>
+
+        <div className="flex pointer-events-auto z-10">
+          <Link
+            href="/privacy-policy"
+            className="px-3 cursor-pointer hover:underline pointer-events-auto"
+          >
+            Privacy Notice
+          </Link>
+          <a
+            href={`mailto:info@groji.co.uk`}
+            className="font-bold hover:underline"
+          >
+            info@groji.co.uk
+          </a>
+        </div>
+      </footer>
     </>
   );
 }
