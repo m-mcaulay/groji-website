@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { email, marketingConsent, source, ts, hp } = parsed.data;
+    const { email, marketingConsent, source, hp } = parsed.data;
 
     // Bot guards (optional)
     if (hp && hp.trim() !== "")

@@ -26,55 +26,55 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [marketingConsent, setMarketingConsent] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  // const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+  //   days: 0,
+  //   hours: 0,
+  //   minutes: 0,
+  //   seconds: 0,
+  // });
   const [hp, setHp] = useState(""); // honeypot
 
-  const [targetDate, setTargetDate] = useState<Date | null>(null);
+  // const [targetDate, setTargetDate] = useState<Date | null>(null);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return; // guard for SSR
+  // useEffect(() => {
+  //   if (typeof window === "undefined") return; // guard for SSR
 
-    const storedDate = localStorage.getItem("launchTargetDate");
+  //   const storedDate = localStorage.getItem("launchTargetDate");
 
-    if (storedDate) {
-      setTargetDate(new Date(storedDate));
-    } else {
-      const date = new Date();
-      date.setMonth(date.getMonth() + 6);
+  //   if (storedDate) {
+  //     setTargetDate(new Date(storedDate));
+  //   } else {
+  //     const date = new Date();
+  //     date.setMonth(date.getMonth() + 6);
 
-      // Ensure 6 months exactly even across month boundary (fix edge cases)
-      const finalDate = new Date(date.toISOString());
+  //     // Ensure 6 months exactly even across month boundary (fix edge cases)
+  //     const finalDate = new Date(date.toISOString());
 
-      localStorage.setItem("launchTargetDate", finalDate.toISOString());
-      setTargetDate(finalDate);
-    }
-  }, []);
+  //     localStorage.setItem("launchTargetDate", finalDate.toISOString());
+  //     setTargetDate(finalDate);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if (!targetDate) return;
+  // useEffect(() => {
+  //   if (!targetDate) return;
 
-    const updateTimeLeft = () => {
-      const now = new Date();
-      const diff = Math.max(targetDate.getTime() - now.getTime(), 0);
+  //   const updateTimeLeft = () => {
+  //     const now = new Date();
+  //     const diff = Math.max(targetDate.getTime() - now.getTime(), 0);
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+  //     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  //     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  //     const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  //     const seconds = Math.floor((diff / 1000) % 60);
 
-      setTimeLeft({ days, hours, minutes, seconds });
-    };
+  //     setTimeLeft({ days, hours, minutes, seconds });
+  //   };
 
-    updateTimeLeft(); // initial call
-    const interval = setInterval(updateTimeLeft, 1000);
+  //   updateTimeLeft(); // initial call
+  //   const interval = setInterval(updateTimeLeft, 1000);
 
-    return () => clearInterval(interval);
-  }, [targetDate]);
+  //   return () => clearInterval(interval);
+  // }, [targetDate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

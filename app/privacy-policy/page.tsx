@@ -28,9 +28,10 @@ export default function PrivacyPage() {
 
         <article className="prose prose-gray prose-headings:font-semibold prose-headings:text-gray-900 leading-relaxed max-w-none">
           <p>
-            {COMPANY} ("we", "us") respects your privacy. This Privacy Notice
-            explains how we collect, use and protect your information when you
-            join our waitlist or free tier on our pre-launch website.
+            {COMPANY} (&quot;we&quot;, &quot;us&quot;) respects your privacy.
+            This Privacy Notice explains how we collect, use and protect your
+            information when you join our waitlist or free tier on our
+            pre-launch website.
           </p>
 
           <h2>1. Who we are</h2>
@@ -56,8 +57,8 @@ export default function PrivacyPage() {
           <h2>3. How we use your data</h2>
           <ul className="list-disc list-inside">
             <li>
-              Send you a confirmation (‘thank-you’) email when you join the
-              waitlist
+              Send you a confirmation (&apos;thank-you&apos;) email when you
+              join the waitlist
             </li>
             <li>Notify you when our product launches (legitimate interest)</li>
             <li>
