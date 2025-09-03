@@ -7,6 +7,13 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import EmojiPainter from "@/components/emoji-painter";
 import Link from "next/link";
+import { Checkbox } from "@/components/checkbox";
+
+// TODO
+// - analytics
+// - seo
+// - a11y
+// - reduce motion
 
 type TimeLeft = {
   days: number;
@@ -25,6 +32,7 @@ export default function Home() {
     minutes: 0,
     seconds: 0,
   });
+  const [hp, setHp] = useState(""); // honeypot
 
   const [targetDate, setTargetDate] = useState<Date | null>(null);
 
@@ -82,19 +90,22 @@ export default function Home() {
       await toast.promise(
         axios.post("/api/join-waitlist", {
           email,
-          // freeTier, // <- NEW
-          marketingConsent, // <- NEW
-          source: "waitlist-landing", // optional, useful for analytics
+          marketingConsent,
+          source: "waitlist-landing",
+          ts: Date.now(),
+          hp,
         }),
         {
           loading: "Joining waitlist...",
           success: "You’ve been added to the waitlist!",
           error: (err) => {
+            const msg =
+              err?.response?.data?.error ||
+              err.message ||
+              "There was a problem. Please try again.";
             if (err.response?.status === 409)
               return "You're already on the waitlist.";
-            if (err.response?.status === 400)
-              return "That email looks invalid.";
-            return "There was a problem. Please try again.";
+            return msg;
           },
         }
       );
@@ -227,40 +238,53 @@ export default function Home() {
                 >
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-3 w-full">
                     <input
+                      id="email"
+                      name="email"
                       type="email"
                       placeholder="Email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                      autoComplete="email"
                       className="px-4 py-3 rounded-full bg-white/20 backdrop-blur-lg text-white border font-bold border-white w-full placeholder-white outline-none md:min-w-[400px] md:max-w-[300px]"
                     />
 
                     <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.97 }}
+                      whileHover={{ scale: loading ? 1 : 1.05 }}
+                      whileTap={{ scale: loading ? 1 : 0.97 }}
                       type="submit"
-                      className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-white/20 hover:backdrop-blur-lg hover:text-white hover:border hover:border-white transition cursor-pointer w-full sm:w-auto"
+                      disabled={loading}
+                      aria-disabled={loading}
+                      className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-white/20 hover:backdrop-blur-lg hover:text-white hover:border hover:border-white transition cursor-pointer w-full sm:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      Join waitlist
+                      {loading ? "Joining…" : "Join waitlist"}
                     </motion.button>
                   </div>
 
-                  {/* Marketing consent on its own line below */}
-                  <div className="w-full flex justify-center">
-                    <label className="flex items-center gap-2 text-xs text-[hsl(280 30% 100%)]/80 mt-2">
-                      <input
-                        type="checkbox"
-                        checked={marketingConsent}
-                        onChange={(e) => setMarketingConsent(e.target.checked)}
-                        className="h-5 w-5 rounded border-white/40 bg-white/90 z-10 pointer-events-auto"
-                      />
-                      I’d like to receive occasional updates, offers, and news
-                      (optional).
-                    </label>
+                  {/* Marketing consent */}
+                  <div className="w-full flex justify-center z-10 relative">
+                    <Checkbox
+                      label="I’d like to receive occasional updates, offers, and news (optional)."
+                      checked={marketingConsent}
+                      onChange={setMarketingConsent}
+                    />
                   </div>
 
-                  {/* Privacy note small and muted, below everything */}
-                  <p className="text-[11px] text-[hsl(280 30% 100%)]/70 mt-2 text-center max-w-sm">
+                  {/* Honeypot (hidden from users, caught by bots) */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={hp}
+                    onChange={(e) => setHp(e.target.value)}
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+
+                  <p
+                    id="privacy-note"
+                    className="text-[11px] text-[hsl(280 30% 100%)]/70 mt-2 text-center max-w-sm"
+                  >
                     We’ll email you when we launch (legitimate interest).
                     Marketing emails are only sent if you opt in. See our{" "}
                     <Link href="/privacy-policy" className="underline">

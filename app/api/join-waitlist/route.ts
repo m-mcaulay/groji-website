@@ -1,58 +1,81 @@
-// app/api/join-waitlist/route.ts
-import { NextResponse } from "next/server";
-import axios from "axios";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
-const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN!;
-const BASE_ID = process.env.BASE_ID!;
-const TABLE_NAME = process.env.TABLE_NAME!;
+const ML_API_KEY = process.env.MAILERLITE_API_KEY!;
+const WAITLIST_GROUP_ID = process.env.MAILERLITE_WAITLIST_GROUP_ID!; // string ok
+const MARKETING_GROUP_ID = process.env.MAILERLITE_MARKETING_GROUP_ID; // optional
 
-export async function POST(req: Request) {
-  const { email } = await req.json();
+const Body = z.object({
+  email: z.string().email(),
+  marketingConsent: z.boolean().optional().default(false),
+  source: z.string().max(64).optional(),
+  ts: z.number().optional(),
+  hp: z.string().optional(),
+});
 
-  if (!email || typeof email !== "string") {
-    return NextResponse.json({ error: "Invalid email" }, { status: 400 });
-  }
-
+export async function POST(req: NextRequest) {
   try {
-    // Check for duplicates (optional)
-    // const check = await axios.get(
-    //   `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`,
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${AIRTABLE_TOKEN}`,
-    //     },
-    //     params: {
-    //       filterByFormula: `LOWER({Email}) = "${email.toLowerCase()}"`,
-    //       maxRecords: 1,
-    //     },
-    //   }
-    // );
+    const parsed = Body.safeParse(await req.json());
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Invalid payload", details: parsed.error.flatten() },
+        { status: 400 }
+      );
+    }
 
-    // if (check.data.records.length > 0) {
-    //   return NextResponse.json(
-    //     { error: "Email already exists" },
-    //     { status: 409 }
-    //   );
+    const { email, marketingConsent, source, ts, hp } = parsed.data;
+
+    // Bot guards (optional)
+    if (hp && hp.trim() !== "")
+      return NextResponse.json({ ok: true }, { status: 200 });
+    // if (ts && Date.now() - ts < 300) {
+    //   return NextResponse.json({ error: "Slow down" }, { status: 400 });
     // }
 
-    // Add email
-    await axios.post(
-      `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`,
-      {
-        fields: { Email: email },
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${AIRTABLE_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    // Custom fields (appear in ML as fields)
+    const fields = {
+      source: source ?? "waitlist-landing",
+      marketing_consent: marketingConsent ? "yes" : "no",
+      consent_ts: new Date().toISOString(),
+    };
 
-    return NextResponse.json({ success: true });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // Groups: Waitlist always; Marketing if opted in
+    const groups = [WAITLIST_GROUP_ID];
+    if (marketingConsent && MARKETING_GROUP_ID) groups.push(MARKETING_GROUP_ID);
+
+    // ✅ Correct endpoint
+    const res = await fetch("https://connect.mailerlite.com/api/subscribers", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${ML_API_KEY}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        fields,
+        groups,
+        resubscribe: true,
+        autoresponders: true,
+      }),
+      cache: "no-store",
+    });
+
+    if (res.status === 200 || res.status === 201) {
+      return NextResponse.json({ ok: true }, { status: 200 });
+    }
+
+    const text = await res.text();
+    return NextResponse.json(
+      { error: `MailerLite error: ${res.status} ${text}` },
+      { status: 502 }
+    );
   } catch (err: any) {
-    console.error("Airtable error:", err.response?.data || err.message || err);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    console.error("join-waitlist error:", err);
+    return NextResponse.json(
+      { error: err.message || "Server error" },
+      { status: 500 }
+    );
   }
 }
