@@ -286,7 +286,8 @@ export default function Home() {
                     className="text-[11px] text-[hsl(280 30% 100%)]/70 mt-2 text-center max-w-sm"
                   >
                     We’ll email you when we launch (legitimate interest).
-                    Marketing emails are only sent if you opt in. See our{" "}
+                    Marketing emails are only sent if you opt in. Emails are
+                    sent via our provider MailerLite. See our{" "}
                     <Link href="/privacy-policy" className="underline">
                       Privacy Notice
                     </Link>

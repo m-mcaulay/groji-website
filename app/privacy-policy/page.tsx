@@ -6,7 +6,7 @@ export default function PrivacyPage() {
   const COMPANY = "Groji";
   const CITY_COUNTRY = "London, UK";
   const CONTACT_EMAIL = "info@groji.co.uk";
-  const PROVIDERS = ["Brevo", "MailerLite"]; // list your processors
+  const PROVIDERS = ["MailerLite"]; // list your processors
   const UPDATED = "29 August 2025"; // e.g., "29 August 2025"
 
   return (
@@ -26,11 +26,11 @@ export default function PrivacyPage() {
           <p className="mt-2 text-sm text-gray-500">Last updated: {UPDATED}</p>
         </header>
 
-        <article className="prose prose-gray max-w-none">
+        <article className="prose prose-gray prose-headings:font-semibold prose-headings:text-gray-900 leading-relaxed max-w-none">
           <p>
-            {COMPANY} (&quot;we&quot;, &quot;us&quot;) respects your privacy.
-            This notice explains how we collect and use your information when
-            you join our waitlist or free tier on our pre‑launch website.
+            {COMPANY} ("we", "us") respects your privacy. This Privacy Notice
+            explains how we collect, use and protect your information when you
+            join our waitlist or free tier on our pre-launch website.
           </p>
 
           <h2>1. Who we are</h2>
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
           </p>
 
           <h2>2. What data we collect</h2>
-          <ul>
+          <ul className="list-disc list-inside">
             <li>Email address (when you sign up)</li>
             <li>
               Your consent choice (if you tick the box to receive marketing
@@ -54,29 +54,37 @@ export default function PrivacyPage() {
           </ul>
 
           <h2>3. How we use your data</h2>
-          <ul>
+          <ul className="list-disc list-inside">
+            <li>
+              Send you a confirmation (‘thank-you’) email when you join the
+              waitlist
+            </li>
             <li>Notify you when our product launches (legitimate interest)</li>
-            <li>Provide early access or free‑tier updates (if you opted in)</li>
-            <li>Send news or offers (only if you consent to marketing)</li>
+            <li>
+              Provide early access or free-tier updates (legitimate interest)
+            </li>
+            <li>
+              Send occasional news or offers (only if you consent to marketing)
+            </li>
           </ul>
 
           <h2>4. Our legal bases</h2>
-          <ul>
+          <ul className="list-disc list-inside">
             <li>
               <strong>Legitimate interests</strong> to contact you once about
-              launch/early access when you join the waitlist.
+              launch/early access when you join the waitlist
             </li>
             <li>
               <strong>Consent</strong> for ongoing marketing communications. You
-              can withdraw consent at any time.
+              can withdraw consent at any time
             </li>
           </ul>
 
           <h2>5. Who we share data with</h2>
           <p>
-            We store emails and send messages using trusted service providers
-            (data processors), such as {PROVIDERS.join(", ")}. They process your
-            data securely on our behalf. We do not sell your data.
+            We store emails and send messages using our email provider{" "}
+            {PROVIDERS.join(", ")}. They process your data securely on our
+            behalf. We do not sell your data.
           </p>
 
           <h2>6. International transfers</h2>
@@ -87,18 +95,19 @@ export default function PrivacyPage() {
           </p>
 
           <h2>7. How long we keep your data</h2>
-          <ul>
+          <ul className="list-disc list-inside">
             <li>
-              Waitlist emails: kept until launch and any immediate follow‑up
-              messages.
+              Waitlist emails: kept until launch and any immediate follow-up
+              messages, then deleted unless you also opted into marketing
+              updates
             </li>
             <li>
               Marketing emails: kept until you unsubscribe or we no longer need
-              them.
+              them
             </li>
             <li>
               Security logs: kept for a short period for fraud and abuse
-              prevention.
+              prevention
             </li>
           </ul>
 
@@ -111,7 +120,8 @@ export default function PrivacyPage() {
 
           <h2>9. How to unsubscribe or make a request</h2>
           <p>
-            Every email includes an unsubscribe link. You can also email{" "}
+            Every marketing email includes an unsubscribe link provided by{" "}
+            {PROVIDERS.join(", ")}. You can also email{" "}
             <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> to
             unsubscribe or make a data rights request.
           </p>
