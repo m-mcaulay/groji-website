@@ -14,7 +14,7 @@ export function Checkbox({ label, checked, onChange, id }: CheckboxProps) {
   return (
     <label
       htmlFor={checkboxId}
-      className="flex items-center gap-2 cursor-pointer text-xs text-white/80"
+      className="flex items-center gap-4 md:gap-2 cursor-pointer text-xs text-white/80"
     >
       {/* Hidden native checkbox */}
       <input
@@ -27,7 +27,7 @@ export function Checkbox({ label, checked, onChange, id }: CheckboxProps) {
 
       {/* Custom box */}
       <span
-        className={`flex h-4 w-4 items-center justify-center rounded border transitio
+        className={`flex h-4 w-4 items-center justify-center rounded border transition
           ${
             checked
               ? "bg-[#6e38c0] border-[#6e38c0]"
@@ -47,7 +47,7 @@ export function Checkbox({ label, checked, onChange, id }: CheckboxProps) {
         )}
       </span>
 
-      {label}
+      <span className="w-[50vw] md:w-full">{label}</span>
     </label>
   );
 }

@@ -262,7 +262,7 @@ export default function Home() {
                   </div>
 
                   {/* Marketing consent */}
-                  <div className="w-full flex justify-center z-10 relative">
+                  <div className="w-[90%] md:w-full flex justify-center z-10 relative">
                     <Checkbox
                       label="I’d like to receive occasional updates, offers, and news (optional)."
                       checked={marketingConsent}
