@@ -30,13 +30,13 @@ export function Checkbox({ label, checked, onChange, id }: CheckboxProps) {
         className={`flex h-4 w-4 items-center justify-center rounded border transition
           ${
             checked
-              ? "bg-[#6e38c0] border-[#6e38c0]"
+              ? "bg-[#ffffff] border-[#000000]"
               : "border-white/40 backdrop-blur-lg bg-white/70"
           }`}
       >
         {checked && (
           <svg
-            className="h-3.5 w-3.5 text-white"
+            className="h-3.5 w-3.5 text-black"
             viewBox="0 0 20 20"
             fill="none"
             stroke="currentColor"
