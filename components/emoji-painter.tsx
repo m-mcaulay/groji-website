@@ -21,9 +21,9 @@ const EmojiPainter: React.FC = () => {
 
     containerRef.current.appendChild(emoji);
 
-    setTimeout(() => {
-      emoji.remove();
-    }, 3000);
+    // setTimeout(() => {
+    //   emoji.remove();
+    // }, 3000);
   };
 
   const handleMove = (e: MouseEvent | TouchEvent) => {
