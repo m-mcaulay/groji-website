@@ -227,7 +227,7 @@ export default function Home() {
                 >
                   <br />
                   We develop educational growing kits and products inspired by
-                  nature. <br />
+                  nature 🌼. <br />
                 </motion.p>
 
                 {/* <div className="min-h-[30vh]"> */}
