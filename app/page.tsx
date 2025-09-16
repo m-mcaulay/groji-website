@@ -140,6 +140,9 @@ export default function Home() {
   // #6f2fcd - this one passes
   // #5b06e8
   // green border-[hsl(10 20% 100%)] bg-[#305900]
+  //#197ffc
+  //#7d59ff
+  //
 
   return (
     <>
@@ -165,7 +168,7 @@ export default function Home() {
         transition={{ duration: 1 }}
         className="overflow-hidden"
       >
-        <main className="full-screen-height bg-[#3c27ff] px-4 overflow-hidden">
+        <main className="full-screen-height bg-[#00611f] px-4 overflow-hidden">
           <EmojiPainter />
           <div className="text-center flex flex-col justify-center full-screen-height z-1 max-h-screen overflow-y-hidden">
             <nav className="absolute top-5 md:top-6 md:left-6 md:right-6 left-4 right-4 flex justify-between items-center font-bold">
@@ -209,7 +212,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.7 }}
-                  className="text-5xl md:text-7xl font-semibold leading-[1.1] text-[hsl(280 30% 100%)] md:min-w-[100%] lg:max-w-[100%]"
+                  className="text-7xl md:text-7xl font-semibold leading-[1.1] text-[hsl(280 30% 100%)] md:min-w-[100%] lg:max-w-[100%]"
                 >
                   Explore, Play, <span className="italic font-serif">Grow</span>
                   .<br />
@@ -255,7 +258,7 @@ export default function Home() {
                       type="submit"
                       disabled={loading}
                       aria-disabled={loading}
-                      className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-white/20 hover:backdrop-blur-lg hover:text-white hover:border hover:border-white transition cursor-pointer w-full sm:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-white/20 hover:backdrop-blur-lg hover:text-white hover:border hover:border-white transition cursor-pointer w-full md:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       {loading ? "Joining…" : "Join waitlist"}
                     </motion.button>
