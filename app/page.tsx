@@ -322,7 +322,7 @@ export default function Home() {
           </div>
         </main>
       </motion.div>
-      <footer className="flex justify-between items-center w-full p-2 absolute bottom-0 text-sm">
+      <footer className="flex justify-between items-center w-full p-2  text-sm ">
         <p>© Groji 2025</p>
 
         <div className="flex pointer-events-auto z-10">
