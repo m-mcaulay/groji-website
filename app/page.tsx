@@ -212,7 +212,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.7 }}
-                  className="text-6xl md:text-7xl font-semibold leading-[1.1] text-[hsl(280 30% 100%)] md:min-w-[100%] lg:max-w-[100%]"
+                  className="text-5xl md:text-7xl font-semibold leading-[1.1] text-[hsl(280 30% 100%)] md:min-w-[100%] lg:max-w-[100%]"
                 >
                   Explore, Play, <span className="italic font-serif">Grow</span>
                   .<br />
@@ -322,7 +322,7 @@ export default function Home() {
           </div>
         </main>
       </motion.div>
-      <footer className="flex justify-between items-center w-full p-2  text-sm ">
+      <footer className="flex justify-between items-center w-full p-2 absolute bottom-0 text-sm ">
         <p>© Groji 2025</p>
 
         <div className="flex pointer-events-auto z-10">
