@@ -15,7 +15,7 @@ const EmojiPainter: React.FC = () => {
     const emoji = document.createElement("span");
     emoji.textContent =
       plantEmojis[Math.floor(Math.random() * plantEmojis.length)];
-    emoji.className = "absolute pointer-events-none select-none text-6xl";
+    emoji.className = "absolute pointer-events-none select-none text-[5rem]";
     emoji.style.left = `${x - 12}px`;
     emoji.style.top = `${y - 12}px`;
 
