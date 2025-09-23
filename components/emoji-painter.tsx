@@ -16,14 +16,14 @@ const EmojiPainter: React.FC = () => {
     emoji.textContent =
       plantEmojis[Math.floor(Math.random() * plantEmojis.length)];
     emoji.className = "absolute pointer-events-none select-none text-[5rem]";
-    emoji.style.left = `${x - 12}px`;
-    emoji.style.top = `${y - 12}px`;
+    emoji.style.left = `${x - 44}px`;
+    emoji.style.top = `${y - 44}px`;
 
     containerRef.current.appendChild(emoji);
 
     setTimeout(() => {
       emoji.remove();
-    }, 3000);
+    }, 5000);
   };
 
   const handleMove = (e: MouseEvent | TouchEvent) => {
