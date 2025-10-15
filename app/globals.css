@@ -21,8 +21,9 @@
 }
 
 body {
-  background: #00611f;
-  color: var(--foreground);
+  /* background: #00611f; */
+  background: #fffef0;
+  color: #333dff;
   font-family: "Inter", sans-serif;
 }
 

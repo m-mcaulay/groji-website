@@ -142,7 +142,7 @@ export default function Home() {
   // green border-[hsl(10 20% 100%)] bg-[#305900]
   //#197ffc
   //#7d59ff
-  //
+  //#00611f
 
   return (
     <>
@@ -168,18 +168,22 @@ export default function Home() {
         transition={{ duration: 1 }}
         className="overflow-hidden"
       >
-        <main className="full-screen-height bg-[#00611f] px-4 overflow-hidden">
+        <main className="full-screen-height bg-[#fffef0] px-4 overflow-hidden">
           <EmojiPainter />
           <div className="text-center flex flex-col justify-center full-screen-height z-1 max-h-screen overflow-y-hidden">
-            <nav className="absolute top-5 md:top-6 md:left-6 md:right-6 left-4 right-4 flex justify-between items-center font-bold">
-              <div className="flex items-center justify-center text-[hsl(280 30% 100%)] text-xl md:text-3xl">
-                Groji
+            <nav className="absolute top-3 md:top-4 md:left-4 md:right-4 left-3 right-3 flex justify-between items-center md:items-baseline font-bold">
+              <div className="flex items-center justify-center text-5xl md:text-5xl fredoka">
+                <span className="text-[#18ce00]">G</span>
+                <span className="text-[#ff5900]">r</span>
+                <span className="text-[#2f2bff]">o</span>
+                <span className="text-[#f200fe]">j</span>
+                <span className="text-[#0066ff]">i</span>
               </div>
               <div className="">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  className="text-white cursor-pointer font-bold border border-[hsl(280 30% 100%)] bg-white/20 backdrop-blur-lg rounded-full text-sm md:text-lg px-6 py-2 md:px-8 md:py-3  hover:text-[hsl(280 30% 100%)] transition"
+                  className="text-[#333dff] cursor-pointer font-bold border border-[hsl(280 30% 100%)] bg-white/20 backdrop-blur-lg rounded-full text-sm md:text-lg px-6 py-3 md:px-8 md:py-3  hover:text-[hsl(280 30% 100%)] transition"
                 >
                   <a
                     href="mailto:stephen@studiomod.uk"
@@ -198,7 +202,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[hsl(280 30% 100%)] mt-12  md:py-32 md:px-6 text-center rounded-3xl mx-auto z-1"
             >
-              <div className="space-y-4 flex flex-col items-center justify-between h-full">
+              <div className="space-y-3 flex flex-col items-center justify-between h-full">
                 {/* <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -212,9 +216,10 @@ export default function Home() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.7 }}
-                  className="text-5xl md:text-7xl font-semibold leading-[1.1] text-[hsl(280 30% 100%)] md:min-w-[100%] lg:max-w-[100%]"
+                  className="text-5xl md:text-[10vw] font-bold font-sans leading-[1] text-[hsl(280 30% 100%)] md:min-w-[100%] lg:max-w-[100%]"
                 >
-                  Explore, Play, <span className="italic font-serif">Grow</span>
+                  Explore, Play,{" "}
+                  <span className="italic font-serif font-bold">Grow</span>
                   .<br />
                 </motion.h1>
                 {/* <motion.h2>Where Curiosity Blooms.</motion.h2> */}
@@ -227,7 +232,7 @@ export default function Home() {
                 >
                   <br />
                   We develop educational growing kits and products inspired by
-                  nature 🌼. <br />
+                  nature <span className="]">🌼</span>. <br />
                 </motion.p>
 
                 {/* <div className="min-h-[30vh]"> */}
@@ -237,7 +242,7 @@ export default function Home() {
                 </p> */}
                 <form
                   onSubmit={handleSubmit}
-                  className="flex flex-col items-center gap-3 mb-6 w-full md:max-w-xl mx-auto mt-6 md:mt-12"
+                  className="flex flex-col items-center gap-3 mb-6 w-full md:max-w-xl mx-auto mt-6 md:mt-8"
                 >
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-3 w-full">
                     <input
@@ -249,7 +254,7 @@ export default function Home() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       autoComplete="email"
-                      className="px-4 py-3 rounded-full bg-white/20 backdrop-blur-lg text-white border font-bold border-white w-full placeholder-white outline-none md:min-w-[400px] md:max-w-[300px]"
+                      className="px-4 py-3 rounded-full bg-white/20 backdrop-blur-lg text-[#333dff] border font-bold border-[#333dff] w-full placeholder-[#333dff] outline-none md:min-w-[400px] md:max-w-[300px]"
                     />
 
                     <motion.button
@@ -258,7 +263,7 @@ export default function Home() {
                       type="submit"
                       disabled={loading}
                       aria-disabled={loading}
-                      className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-white/20 hover:backdrop-blur-lg hover:text-white hover:border hover:border-white transition cursor-pointer w-full md:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="px-6 py-3 bg-[#333dff] text-[#ffffff] rounded-full font-medium hover:bg-white/20 hover:backdrop-blur-lg hover:text-[#333dff] border border-[#333dff] transition cursor-pointer w-full md:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       {loading ? "Joining…" : "Join waitlist"}
                     </motion.button>
@@ -286,7 +291,7 @@ export default function Home() {
 
                   <p
                     id="privacy-note"
-                    className="text-[11px] text-[hsl(280 30% 100%)]/70 mt-2 text-center max-w-sm"
+                    className="text-[11px] text-[#333dff] mt-2 text-center max-w-sm"
                   >
                     We’ll email you when we launch (legitimate interest).
                     Marketing emails are only sent if you opt in. Emails are

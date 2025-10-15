@@ -31,7 +31,7 @@ export function Checkbox({ label, checked, onChange, id }: CheckboxProps) {
           ${
             checked
               ? "bg-[#ffffff] border-[#000000]"
-              : "border-white/40 backdrop-blur-lg bg-white/70"
+              : "border-[#333dff] backdrop-blur-lg bg-white/70"
           }`}
       >
         {checked && (
@@ -47,7 +47,7 @@ export function Checkbox({ label, checked, onChange, id }: CheckboxProps) {
         )}
       </span>
 
-      <span className="w-[50vw] md:w-full">{label}</span>
+      <span className="w-[65vw] md:w-full text-[#333dff]">{label}</span>
     </label>
   );
 }
